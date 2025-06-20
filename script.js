@@ -85,6 +85,12 @@ function renderCatalogue(data) {
           </tbody>
         </table>`;
       catalogue.appendChild(div);
-    });
+  fetch(SHEET_URL)
+  .then(response => response.text())
+  .then(text => {
+    const data = Papa.parse(text, { header: true }).data;
+    console.log(data); // 🔍 Debug this!
+    renderCatalogue(data);
+  });
   }
 }
